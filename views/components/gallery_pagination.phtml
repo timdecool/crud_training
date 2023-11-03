@@ -7,7 +7,7 @@
     </li>
 
     <?php for ($i = 1; $i <= ceil($count['count']/6) ; $i++) : ?>
-        <li class="page-item"><a class="page-link" href="?page=gallery&p=<?= $i ?>"><?= $i ?></a></li>
+        <li class="page-item <?= $curPage == $i ? "active":"" ?>"><a class="page-link" href="?page=gallery&p=<?= $i ?>"><?= $i ?></a></li>
     <?php endfor; ?>
 
     <li class="page-item">
