@@ -1,0 +1,19 @@
+<nav class="mx-auto d-flex justify-content-center">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="?page=gallery&p=<?= $curPage > 1 ? $curPage-1:$curPage ?>" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+
+    <?php for ($i = 1; $i <= ceil($count['count']/6) ; $i++) : ?>
+        <li class="page-item"><a class="page-link" href="?page=gallery&p=<?= $i ?>"><?= $i ?></a></li>
+    <?php endfor; ?>
+
+    <li class="page-item">
+      <a class="page-link" href="?page=gallery&p=<?= $curPage < ceil($count['count']/6) ? $curPage+1:$curPage ?>" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
