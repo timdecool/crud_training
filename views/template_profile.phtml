@@ -1,0 +1,25 @@
+<h2 class="text-center mb-3">Vos données personnelles</h2>
+
+<section class="row container-fluid m-auto">
+    <form method="POST" class="card p-4 col-12 col-md-6 col-lg-4 m-auto">
+        <div class="mb-3">
+            <label for="InputFirstName" class="form-label">First name</label>
+            <input type="text" class="form-control" id="InputFirstName" name="first_name" value="<?= $user['first_name'] ?>">
+        </div>
+        <div class="mb-3">
+            <label for="InputLastName" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="InputLastName" name="last_name" value="<?= $user['last_name'] ?>">
+        </div>
+        <div class="mb-3">
+            <label for="InputEmail" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" name="mail" value="<?= $user['mail'] ?>">
+        </div>
+    
+        <button type="submit" class="btn btn-success mb-2" name="update">Mettre à jour les données</button>
+        <a href="?page=home" class="btn btn-danger">Quitter</a>
+
+        <p class="mt-2">
+            <small>Dernière mise à jour : <?= date_format(date_create($user['date_updated']),"d/m/Y à H:i")?></small>
+        </p>
+    </form>
+</section>

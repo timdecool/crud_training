@@ -1,0 +1,38 @@
+<table class="table table-striped my-3">
+  <thead>
+    <tr scope="row">
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Mail</th>
+      <th scope="col">Date d'inscription</th>
+      <th scope="col">Rôle</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($users as $u) : ?>
+        <tr scope="row">
+            <th><?= $u['id'] ?></th>
+            <td scope="col">
+                <?= $u['first_name'].' '.$u['last_name'] ?>
+            </td>
+            <td scope="col"><?= $u['mail'] ?></td>
+            <td scope="col"><?= date_format(date_create($u['date_created']), "d/m/Y à H:i") ?></td>
+            <form method="POST">
+                <td scope="col">
+                    <select name="role">
+                        <option value="user" <?php if($u['role'] == 'user') echo 'selected' ?>>Utilisateur</option>
+                        <option value="editor" <?php if($u['role'] == 'editor') echo 'selected' ?>>Éditeur</option>
+                        <option value="admin" <?php if($u['role'] == 'admin') echo 'selected' ?>>Administrateur</option>
+                    </select>
+                </td>
+                <td scope="col">
+                    <input type="hidden" name="id" value="<?= $u['id'] ?>">
+                    <input class="btn btn-warning" type="submit" name="user_update" value="Mettre à jour">
+                    <a href="javascript:deleteConfirm(<?= intval($u['id']) ?>)" class="btn btn-danger">Supprimer le compte</a>
+                </td>
+            </form>
+        </tr>
+    <?php endforeach ?>
+  </tbody>
+</table>

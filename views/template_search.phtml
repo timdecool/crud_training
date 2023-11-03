@@ -1,0 +1,19 @@
+
+<h2 class="text-center mb-3"><?= sizeof($images) ?> résultat<?= sizeof($images) > 1 ? "s":"" ?> pour "<?= $query ?>" :</h2>
+
+<section class="container-fluid d-flex flex-wrap gap-2 justify-content-center mt-3 mb-3">
+<!-- Affichage des images de la BDD par une boucle foreach -->
+<?php foreach ($images as $i) : ?>
+    <article class="card col-sm-12 col-md-5 col-lg-3">
+        <a href="?page=details&id=<?= $i['id']?>"><img src=<?= $i['src']?> alt="<?= $i['title']?>" title="<?= $i['description'].' par '.$i['author']; ?>" class="card-img-top"></a>
+        <div class="card-body">
+            <h5 class="card-title"><?= $i['description']; ?></h5>
+            <a href="?page=details&id=<?= $i['id']?>" class="btn btn-secondary"><small>Voir plus</small></a>
+
+        </div>
+        <div class="card-footer">
+            <small class="text-body-secondary"><a href="<?= $i['author_link']?>" class="text-body-secondary" target="_blank"><?= $i['author']?></a><?=' - Le '.date_format(date_create($i['date_added']),"d M Y"); ?></small>
+        </div>
+    </article>
+<?php endforeach ?>
+</section>

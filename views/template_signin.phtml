@@ -1,0 +1,17 @@
+<h2 class="text-center mb-3">Sign In</h2>
+
+<section class="row container-fluid m-auto">
+    <form method="POST" class="card p-4 col-12 col-md-6 col-lg-4 m-auto">
+        <div class="mb-3">
+            <label for="InputEmail" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" name="mail">
+        </div>
+        <div class="mb-3">
+            <label for="InputPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="InputPassword" name="password">
+        </div>
+    
+        <button type="submit" class="btn btn-success" name="signin">Sign in</button>
+        <p class="text-center text-danger mt-3"><?= $msgSignin ?></p>
+    </form>
+</section>

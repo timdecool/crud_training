@@ -1,0 +1,40 @@
+<h2 class="text-center">
+  <?php if($_SESSION['user_info']['role'] == "editor") {
+    echo 'Mes publications';
+  }
+  else if($_GET['view'] == 'images') {
+    echo 'Toutes les publications';
+  }
+  else if($_GET['view'] == 'users') {
+    echo 'Tous les utilisateurs';
+  }
+  else {
+    echo 'Tous les commentaires';
+  } ?>
+</h2>
+
+<?php if($_SESSION['user_info']['role'] == "admin") : ?>
+<p class="text-center">
+  <?php if($_GET['view'] != 'images') : ?><a href="?page=admin&view=images" class="link-underline-opacity-10 link-secondary link-offset-3">Toutes les publications</a> | <?php endif ?>
+  <?php if($_GET['view'] != 'users') : ?><a href="?page=admin&view=users" class="link-underline-opacity-10 link-secondary link-offset-3">Tous les utilisateurs</a><?php endif ?>
+  <?php if($_GET['view'] == 'images') echo '|' ?>
+  <?php if($_GET['view'] != 'comments') : ?><a href="?page=admin&view=comments" class="link-underline-opacity-10 link-secondary link-offset-3">Tous les commentaires</a><?php endif ?>
+</p>
+<?php endif ?>
+
+<?php
+  include "./views/components/admin_".$_GET['view'].".phtml";
+?>
+
+<script>
+    const sources = document.querySelectorAll('.src,.desc');
+    for(source of sources) {
+        source.textContent = source.textContent.substr(0,60) + "...";
+    }
+
+    function deleteConfirm(id) {
+      if(confirm("Voulez-vous vraiment supprimer cet élément ?")) {
+        location.href = `?page=delete&view=<?= $_GET['view'] ?>&id=${id}`;
+      }
+    }
+</script>

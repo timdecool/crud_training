@@ -1,0 +1,28 @@
+<h2 class="text-center">Edit image</h2>
+
+<section class="w-75 m-auto">
+    <form method="POST" class="">
+        <div class="mb-3">
+            <label for="src" class="form-label">Source</label>
+            <input type="text" name="src" id="src" class="form-control" value="<?= $image['src']?>">
+        </div>
+        <div class="mb-3">
+            <label for="src" class="form-label">Titre</label>
+            <input type="text" name="title" id="title" class="form-control" value="<?= $image['title']?>">
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Auteur</label>
+            <input type="text" name="author" id="author" class="form-control" value="<?= $image['author']?>">
+        </div>
+        <div class="mb-3">
+            <label for="author_link" class="form-label">Lien auteur</label>
+            <input type="text" name="author_link" id="author_link" class="form-control" value="<?= $image['author_link']?>">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" name="description" id="description" class="form-control" value="<?= $image['description']?>">
+        </div>
+        <input type="submit" name="submit" value="Envoyer" class="btn btn-success">
+        <a href="?page=admin" class="btn btn-danger">Quitter sans enregistrer</a>
+    </form>
+</section>

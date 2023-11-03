@@ -1,0 +1,33 @@
+<table class="table table-striped my-3">
+  <thead>
+    <tr scope="row">
+      <th scope="col">#</th>
+      <th scope="col">Auteur</th>
+      <th scope="col">Message</th>
+      <th scope="col">Posté le</th>
+      <th scope="col">Post associé</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($comments as $c) : ?>
+        <tr scope="row">
+            <th><?= $c['comment_id'] ?></th>
+            <td scope="col">
+                <?= $c['first_name'].' '.$c['last_name'] ?>
+            </td>
+            <td scope="col"><?= $c['comment'] ?></td>
+            <td scope="col"><?= date_format(date_create($c['date_posted']), "d/m/Y à H:i") ?></td>
+            <td scope="col">
+                <a href="?page=details&id=<?= $c['image_id'] ?>">
+                    <img width="100" src="<?= $c['src'] ?>">
+                </a>
+            </td>
+            <td scope="col">
+                    <input class="btn btn-warning" type="submit" name="user_update" value="Mettre à jour">
+                    <a href="javascript:deleteConfirm(<?= intval($c['comment_id']) ?>)" class="btn btn-danger">Supprimer</a>
+            </td>
+        </tr>
+    <?php endforeach ?>
+  </tbody>
+</table>
