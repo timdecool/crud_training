@@ -1,4 +1,6 @@
 <?php
+// --- modèle
+require_once "./models/Image.php";
 
 // Contrôles à l'entrée
 if(!isset($_SESSION['user_info']) || $_SESSION['user_info']['role'] == "user") {
@@ -8,17 +10,12 @@ if(!isset($_GET['view']) || ($_GET['view'] != "images" && $_SESSION['user_info']
     header('Location: ./?page=admin&view=images');
 }
 
-$db = connectDB();
 // Fetch publications
 if($_GET['view'] == "images") {
     if($_SESSION['user_info']['role'] == "admin") {
-        $statement = $db->prepare("SELECT * FROM images ORDER BY id DESC");
-        $statement->execute();
-        $images = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $images = Image::getAll();
     } else {
-        $statement = $db->prepare("SELECT * FROM images WHERE id_user = ? ORDER BY id DESC ");
-        $statement->execute(array(intval($_SESSION['user_info']['id'])));
-        $images = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $images = Image::getAllByUser($_SESSION['user_info']['id']);
     }
 }
 

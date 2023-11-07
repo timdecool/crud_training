@@ -18,7 +18,7 @@
                 <li><strong>Date de publication :</strong> <?= date_format(date_create($image['date_added']), "d/m/Y H:i") ?></li>
                 <li><strong>Dernière modification :</strong> <?= date_format(date_create($image['date_updated']), "d/m/Y H:i")?></li>
                 <li><strong>Posté par :</strong> <?= $image['id_user'] == NULL ? "Anonyme":$image['first_name'].' '.$image['last_name'] ?></li>
-                <li><strong>Mentions j'aime :</strong> <?= $likes['likes'] ?></li>
+                <li><strong>Mentions j'aime :</strong> <?= $likes ?></li>
                 <li>
                     <form method="post">
                         <input type="submit" name="like" class="btn btn-<?= $hasLiked['hasLiked'] == 0 ? "info":"secondary" ?> mt-2" value="<?= $hasLiked['hasLiked'] == 0 ? "J'aime":"Je n'aime plus" ?>">

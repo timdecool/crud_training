@@ -1,10 +1,7 @@
 <?php
-$db = connectDB();
-
-// 3 last pictures
-$statement = $db->prepare("SELECT * FROM images ORDER BY id DESC limit 3");
-$statement->execute();
-$pictures = $statement->fetchAll(PDO::FETCH_ASSOC);
+// Import modèle
+require_once "./models/Image.php";
+$images = Image::getLastImages();
 
 // La session est-elle lancée ?
 if(isset($_SESSION['user_info'])) {
