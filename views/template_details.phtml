@@ -12,12 +12,18 @@
         <!-- AFFICHAGE INFOS -->
         <div class="col-12 col-md-6 px-md-3 py-3 py-md-0">
             <h5 class="">Plus d'informations</h5>
-            <ul class="details__fiche">
+            <ul class="details__fiche list-unstyled">
                 <li><strong>Description : </strong><?= $image['description'] ?></li>
                 <li><strong>Artiste :</strong> <a href="<?= $image['author_link'] ?>" class="text-decoration-none text-secondary" target="_blank"><?= $image['author'] ?></a></li>
                 <li><strong>Date de publication :</strong> <?= date_format(date_create($image['date_added']), "d/m/Y H:i") ?></li>
                 <li><strong>Dernière modification :</strong> <?= date_format(date_create($image['date_updated']), "d/m/Y H:i")?></li>
                 <li><strong>Posté par :</strong> <?= $image['id_user'] == NULL ? "Anonyme":$image['first_name'].' '.$image['last_name'] ?></li>
+                <li><strong>Mentions j'aime :</strong> <?= $likes['likes'] ?></li>
+                <li>
+                    <form method="post">
+                        <input type="submit" name="like" class="btn btn-<?= $hasLiked['hasLiked'] == 0 ? "info":"secondary" ?> mt-2" value="<?= $hasLiked['hasLiked'] == 0 ? "J'aime":"Je n'aime plus" ?>">
+                    </form>
+                </li>
             </ul>
             <hr>
 
@@ -26,13 +32,10 @@
             <section class="mb-3">
                 <?php foreach($comments as $comment) : ?>
                     <article class="mb-1">
-                        <!-- <form class="d-inline"> -->
                         <strong><?= $comment['first_name'].' '.$comment['last_name'] ?></strong>  
                         <span><?= $comment['comment'] ?></span>
-                            <!-- <input class="d-none" type="text" name="comment" id="commentInput" value="<?= $comment['comment'] ?>"> -->
                         <br><small>Posté le <?= date_format(date_create($comment['date_posted']), "d/m/Y à H:i")?>
                         <?php if(isset($_SESSION['user_info']) && $comment['id_user'] == $_SESSION['user_info']['id']) : ?>
-                        <!-- - <a href="#" class="link-underline-opacity-10 link-secondary link-offset-3" id="editLink">Éditer</a>  -->
                         - <a href="?page=details&id=<?= $image['id'] ?>&delete=<?= $comment['comment_id']?>" class="link-underline-opacity-10 link-secondary link-offset-3">Supprimer</a>
                         <?php endif ?>
                         </small>
@@ -60,20 +63,4 @@
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
     }
-
-    // const editLink = document.querySelector('#editLink');
-    // const commentInput = document.querySelector('#commentInput');
-
-    // editLink.addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     if(commentInput.classList.contains('d-none')) {
-    //         commentInput.previousElementSibling.classList.add('d-none');
-    //         commentInput.classList.remove('d-none');
-    //         editLink.textContent = "Confirmer";
-    //     } else {
-
-    //     }
-    // })
-
-
 </script>

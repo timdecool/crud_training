@@ -28,6 +28,44 @@ if (empty($image)) {
 }
 
 //////////////////
+///// LIKES //////
+//////////////////
+
+// Vérifier si l'utilisateur connecté a déjà liké ce post
+$statement = $db->prepare("SELECT COUNT(*) AS hasLiked
+FROM likes
+WHERE id_user=? and id_image=?");
+$statement->execute(array($_SESSION['user_info']['id'], $_GET['id']));
+$hasLiked = $statement->fetch(PDO::FETCH_ASSOC);
+
+// Envoyer son like
+if (isset($_POST['like']) && $hasLiked['hasLiked'] == 0) {
+    $statement = $db->prepare("INSERT INTO likes(id_user,id_image) VALUES (?,?)"
+);
+$statement->execute(array($_SESSION['user_info']['id'], $_GET['id']));
+}
+
+// Retirer son like
+if (isset($_POST['like']) && $hasLiked['hasLiked'] == 1) {
+    $statement = $db->prepare("DELETE FROM likes WHERE id_user=? AND id_image=?"
+);
+$statement->execute(array($_SESSION['user_info']['id'], $_GET['id']));
+}
+
+// Revérifier si l'utilisateur connecté a déjà liké ce post
+$statement = $db->prepare("SELECT COUNT(*) AS hasLiked
+FROM likes
+WHERE id_user=? and id_image=?");
+$statement->execute(array($_SESSION['user_info']['id'], $_GET['id']));
+$hasLiked = $statement->fetch(PDO::FETCH_ASSOC);
+
+// Récupérer le nombre de likes
+$statement = $db->prepare("SELECT COUNT(*) AS likes
+FROM likes WHERE id_image=?");
+$statement->execute(array($_GET['id']));
+$likes = $statement->fetch(PDO::FETCH_ASSOC);
+
+//////////////////
 // COMMENTAIRES //
 //////////////////
 

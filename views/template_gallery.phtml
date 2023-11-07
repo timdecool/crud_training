@@ -10,7 +10,7 @@
 <!-- Affichage des images de la BDD par une boucle foreach -->
 <?php foreach ($images as $i) : ?>
     <article class="card col-sm-12 col-md-5 col-lg-3">
-        <a href="?page=details&id=<?= $i['id']?>"><img src=<?= $i['src']?> alt="<?= $i['title']?>" title="<?= $i['description'].' par '.$i['author']; ?>" class="card-img-top"></a>
+        <a href="?page=details&id=<?= $i['id']?>" style="height: 230px; overflow:hidden;"><img src=<?= $i['src']?> alt="<?= $i['title']?>" title="<?= $i['description'].' par '.$i['author']; ?>" class="card-img-top"></a>
         <div class="card-body">
             <h5 class="card-title"><?= $i['title']; ?></h5>
             <a href="?page=details&id=<?= $i['id']?>" class="btn btn-secondary"><small>Voir plus</small></a>
