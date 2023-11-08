@@ -1,20 +1,18 @@
 <?php
+
+// --- modèle
+require_once "./models/User.php";
+
+
 $msgSignin = '';
 // Extraction de données
 if(isset($_POST['signin'])) {
-    try {
-        $db = connectDB();
-        $sql="SELECT * FROM users WHERE mail=?";
-        $stmt = $db->prepare($sql);
-        $stmt->execute(array($_POST['mail']));
-        $results=$stmt->fetch(PDO::FETCH_ASSOC);
-    } 
-    catch (Exception $e) {$sqlError=$e->getMessage();}
+    $user = User::getUserByMail($_POST['mail']);
             
-    if(!empty($results)) {
-        if(password_verify($_POST['password'],$results['password'])) {
+    if(!empty($user)) {
+        if(password_verify($_POST['password'],$user['password'])) {
             // Connecter l'utilisateur
-            $_SESSION['user_info'] = $results;
+            $_SESSION['user_info'] = $user;
             header("Location:?page=home");
         } else {
             // Refuser l'accès

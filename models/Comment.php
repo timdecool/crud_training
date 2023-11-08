@@ -2,6 +2,22 @@
 require_once "./service/database.php";
 
 class Comment {
+    public static function getAll() {
+        $comments = [];
+
+        $pdo = connectDB();
+        $statement = $pdo->prepare("SELECT *, images.id AS image_id, comments.id AS comment_id, users.id AS user_id
+        FROM comments 
+        INNER JOIN images ON comments.id_image = images.id
+        INNER JOIN users ON comments.id_user = users.id
+        ORDER BY comment_id DESC");
+        $statement->execute();
+        $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $comments;
+    }
+
+
     public static function getComments($id_image) {
         $comments = [];
 

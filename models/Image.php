@@ -76,6 +76,18 @@ class Image {
         return $images;
     }
 
+    public static function getImagesByQuery($query) {
+        $images = [];
+
+        $pdo = connectDB();
+        $sql = $pdo->prepare("SELECT * FROM images 
+        WHERE author LIKE ? OR title LIKE ? OR description LIKE ? OR id LIKE ?");
+        $sql->execute(["%".$query."%","%".$query."%","%".$query."%","%".$query."%"]);
+        $images = $sql->fetchAll(PDO::FETCH_ASSOC);        
+
+        return $images;
+    }
+
     //////////////////
     /////// CUD //////
     //////////////////

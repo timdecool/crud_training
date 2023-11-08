@@ -1,26 +1,30 @@
 <h2 class="text-center mb-3">Register</h2>
-<p class="text-success text-center"><?= $msgSuccess ?></p>
+<!-- <p class="text-success text-center"><?= $success ?></p> -->
 
 <section class="row container-fluid m-auto">
-    <form method="POST" class="card p-4 col-12 col-md-6 col-lg-4 m-auto">
-        <div class="mb-3">
-            <label for="InputFirstName" class="form-label">First name</label>
-            <input type="text" class="form-control" id="InputFirstName" name="first_name">
-        </div>
-        <div class="mb-3">
-            <label for="InputLastName" class="form-label">Last name</label>
-            <input type="text" class="form-control" id="InputLastName" name="last_name">
-        </div>
-        <div class="mb-3">
-            <label for="InputEmail" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" name="mail">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else. <span class="text-danger"><?= $msgEmail ?></span></div>
-        </div>
-        <div class="mb-3">
-            <label for="InputPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="InputPassword" name="password">
-        </div>
-    
-        <button type="submit" class="btn btn-success" name="register">Submit</button>
-    </form>
+    <?php if(!$success) : ?>
+        <form method="POST" class="card p-4 col-12 col-md-6 col-lg-4 m-auto">
+            <div class="mb-3">
+                <label for="InputFirstName" class="form-label">First name</label>
+                <input type="text" class="form-control" id="InputFirstName" name="first_name">
+            </div>
+            <div class="mb-3">
+                <label for="InputLastName" class="form-label">Last name</label>
+                <input type="text" class="form-control" id="InputLastName" name="last_name">
+            </div>
+            <div class="mb-3">
+                <label for="InputEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" name="mail">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else. <span class="text-danger"><?= $msgEmail ?></span></div>
+            </div>
+            <div class="mb-3">
+                <label for="InputPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="InputPassword" name="password">
+            </div>
+        
+            <button type="submit" class="btn btn-success" name="register">Submit</button>
+        </form>
+    <?php else : ?>
+        <p class="text-success text-center">Signup completed! <a href="?page=signin" class="text-reset">Sign in</a> now.</p>
+    <?php endif; ?>
 </section>
