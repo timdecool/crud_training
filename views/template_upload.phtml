@@ -1,0 +1,10 @@
+<h2 class="text-center">Upload</h2>
+<section class="container-fluid">
+    <?php if (!empty($error)) echo $error; ?>
+    
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image_file" accept="image/*">
+        <input type="submit" name="upload" value="Upload">
+    </form>
+
+</section>
