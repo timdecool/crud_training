@@ -36,7 +36,7 @@ class Message {
         $statement = $pdo->prepare("SELECT * FROM messages 
         WHERE id_conv=? ORDER BY id DESC LIMIT 1");
         $statement->execute([$id_conv]);
-        $message = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $message = $statement->fetch(PDO::FETCH_ASSOC);
 
         return $message;
 

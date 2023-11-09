@@ -3,7 +3,7 @@
         <div class="position-fixed col-3">
             <h4>Vos conversations</h4>
             <?php foreach($convInfos as $c) : ?>
-                <a href="?page=messages&conv=<?= $c[1][0]['id_conv']?>" class="text-decoration-none"><div class="card mb-3 p-3 w-100">
+                <a href="?page=messages&conv=<?= $c[1]['id_conv']?>" class="text-decoration-none"><div class="card mb-3 p-3 w-100">
                     <div><strong><?php 
                         $names = "";                 
                         foreach($c[0] as $name) {
@@ -13,7 +13,7 @@
                         echo $names;
                     ?></strong></div>
                     <div>
-                        <?= $c[1][0]['message']; ?>                
+                        <?= $c[1]['message']; ?>                
                     </div>
                 </div></a>
             <?php endforeach; ?>
@@ -51,9 +51,19 @@
     // Data var
     const months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
     let conversation = [];
+    let conversationPanel = [];
     let userId = <?= $_SESSION['user_info']['id'] ?>;
 
-    // Display
+    // Display all conversations
+    (async function displayAllConv() {
+        await fetch('?page=getallconvs&id=<?= $_SESSION['user_info']['id'] ?>')
+        .then(response => response.json())
+        .then(data => conversationPanel = data)
+        .catch(error => console.error("Error :", error));
+
+    })();
+
+    // Display conversation
     async function displayConv() {
 
         // Récupérer les data

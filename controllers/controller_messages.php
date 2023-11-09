@@ -16,6 +16,8 @@ if(isset($_GET['conv'])) {
     }
 
     Conversation::updateLastSeen($_SESSION['user_info']['id'],$_GET['conv']);
+
+    
     $userConvs = Conversation::getAllByUser($_SESSION['user_info']['id']);
     $convInfos = [];
     foreach($userConvs as $c) {
