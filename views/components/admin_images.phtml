@@ -1,37 +1,40 @@
-<a href="?page=addimage" class="btn btn-success">Ajouter une image</a>
-<table class="table table-striped my-3">
-  <thead>
-    <tr scope="row">
-      <th scope="col">#</th>
-      <th scope="col">Vignette</th>
-      <th scope="col">Source</th>
-      <th scope="col">Title</th>
-      <th scope="col">Author</th>
-      <th scope="col">Author link</th>
-      <th scope="col">Description</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($images as $i) : ?>
-        <tr scope="row">
-            <th><?= $i['id'] ?></th>
-            <td scope="col">
-              <a href="?page=details&id=<?= $i['id'] ?>">
-                <img width="100" src="<?= $i['src'] ?>">
-              </a>
-            </td>
-            <td scope="col" class='src'><?= $i['src'] ?></td>
-            <td scope="col"><?= $i['title'] ?></td>
-            <td scope="col"><?= $i['author'] ?></td>
-            <td scope="col"><?= $i['author_link'] ?></td>
-            <td scope="col" class='desc'><?= $i['description'] ?></td>
-            <td scope="col"><a class="btn btn-warning mb-1" href="?page=editimage&id=<?=$i['id']?>">Éditer</a>
-            <a href="javascript:deleteConfirm(<?= intval($i['id']) ?>)" class="btn btn-danger">Supprimer</a></td>
-        </tr>
-    <?php endforeach ?>
-  </tbody>
-</table>
-<?php if(sizeof($images) == 0) echo '<p class="text-center">Postez votre premier article et il s\'affichera ici.</p>'; ?>
-
-<a href="?page=addimage" class="btn btn-success mb-3">Ajouter une image</a>
+<section class="container-fluid">
+  
+  <a href="?page=addimage" class="btn btn-success">Ajouter une image</a>
+  <table class="table table-striped my-3">
+    <thead>
+      <tr scope="row">
+        <th scope="col">#</th>
+        <th scope="col">Vignette</th>
+        <th scope="col">Source</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Author link</th>
+        <th scope="col">Description</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($images as $i) : ?>
+          <tr scope="row">
+              <th><?= $i['id'] ?></th>
+              <td scope="col">
+                <a href="?page=details&id=<?= $i['id'] ?>">
+                  <img width="100" src="<?= $i['src'] ?>">
+                </a>
+              </td>
+              <td scope="col" class='src'><?= $i['src'] ?></td>
+              <td scope="col"><?= $i['title'] ?></td>
+              <td scope="col"><?= $i['author'] ?></td>
+              <td scope="col"><?= $i['author_link'] ?></td>
+              <td scope="col" class='desc'><?= $i['description'] ?></td>
+              <td scope="col"><a class="btn btn-warning mb-1" href="?page=editimage&id=<?=$i['id']?>">Éditer</a>
+              <a href="javascript:deleteConfirm(<?= intval($i['id']) ?>)" class="btn btn-danger">Supprimer</a></td>
+          </tr>
+      <?php endforeach ?>
+    </tbody>
+  </table>
+  <?php if(sizeof($images) == 0) echo '<p class="text-center">Postez votre premier article et il s\'affichera ici.</p>'; ?>
+  
+  <a href="?page=addimage" class="btn btn-success mb-3">Ajouter une image</a>
+</section>
