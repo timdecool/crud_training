@@ -1,0 +1,11 @@
+<script>
+
+    let r = [];
+    async function displayConv() {
+        await fetch('?page=getconv&conv=1?>')
+        .then(response => response.json())
+        .then(data => r = data)
+        .catch(error => console.error("Error :", error));
+    }
+    
+</script>

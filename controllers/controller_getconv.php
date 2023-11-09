@@ -2,12 +2,16 @@
 // --- Modèle
 require_once "./models/Message.php";
 require_once "./models/User.php";
+require_once "./models/Conversation.php";
 
+$messages = Message::getConversation($_GET['conv']);
+$convUsers = Conversation::getConvUsers($_GET['conv']);
+$users = [];
 
-$user = User::getUser($_GET['user']);
-$friend = User::getUser($_GET['person']);
-$messages = Message::getConversation($_GET['user'],$_GET['person']);
+foreach($convUsers as $u) {
+    $users[] = User::getUser($u['id_user']);
+}
 
-$conversation = array("user" => $user, "friend" => $friend, "messages" => $messages);
+$conversation = array("users" => $users, "messages" => $messages);
 header('content-type:application/json');
 echo json_encode($conversation);
