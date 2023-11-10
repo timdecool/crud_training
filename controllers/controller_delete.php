@@ -1,7 +1,10 @@
 <?php
-$db = connectDB();
+// --- modèle
+require_once "./models/Image.php";
 
 if($_GET['view'] == 'images')  {
+    $i = Image::getOne($_GET['id']);
+    unlink($i['src']);
     Image::deleteImage($_GET['id']);
     header("Location:?page=admin&view=images");
 }

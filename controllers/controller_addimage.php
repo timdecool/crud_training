@@ -8,7 +8,9 @@ if(!isset($_SESSION['user_info']) || $_SESSION['user_info']['role'] == "user") {
 }
 
 $errors = [];
+$fileName = '';
 if(isset($_POST['submit'])) {
+    $fileName =  strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/','-',$_POST['title'])));
 
     if (!empty($_FILES['image_file']['tmp_name'])) {        
 
@@ -31,7 +33,7 @@ if(isset($_POST['submit'])) {
 
         if($isValid) {
             // On précise le nom du fichier, en l'occurrence, l'id user et un timestamp
-            $newFile = './uploads/'.$_SESSION['user_info']['id'].'-'.time().'.'.$ext[1];
+            $newFile = './uploads/'.$_SESSION['user_info']['id'].'-'.time().'-'.$fileName.'.'.$ext[1];
             // On copie le fichier temporaire vers un vrai fichier dans le dossier uploads
             move_uploaded_file($tempFile,$newFile);
             if(!empty($_POST['author']) && !empty($_POST['author_link']) && !empty($_POST['title']) && !empty($_POST['description'])) {
