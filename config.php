@@ -1,5 +1,6 @@
 <?php 
 require "./service/database.php";
+require "./service/class/Database.php";
 
 define("CONFIG_SITE_TITLE", "Mon modèle MVC PHP");
 define("CONFIG_ROUTES",[
@@ -8,4 +9,5 @@ define("CONFIG_ROUTES",[
     "messages" => "messages"
 ]);
 
+$db = new Database;
 session_start();

@@ -25,11 +25,11 @@ if (empty($image)) {
 $hasLiked = Like::hasLiked($_SESSION['user_info']['id'],$_GET['id']);
 
 // Envoyer son like
-if (isset($_POST['like']) && $hasLiked['hasLiked'] == 0) {
+if (isset($_POST['like']) && $hasLiked == 0) {
     Like::like($_SESSION['user_info']['id'],$_GET['id']);
 }
 // Retirer son like
-if (isset($_POST['like']) && $hasLiked['hasLiked'] == 1) {
+if (isset($_POST['like']) && $hasLiked == 1) {
     Like::unlike($_SESSION['user_info']['id'],$_GET['id']);
 }
 

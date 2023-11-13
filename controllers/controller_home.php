@@ -1,4 +1,6 @@
 <?php
+
+
 // Import modèle
 require_once "./models/Image.php";
 $images = Image::getLastImages();

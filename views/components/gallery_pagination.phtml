@@ -6,12 +6,12 @@
       </a>
     </li>
 
-    <?php for ($i = 1; $i <= ceil($count['count']/6) ; $i++) : ?>
+    <?php for ($i = 1; $i <= ceil($count/6) ; $i++) : ?>
         <li class="page-item <?= $curPage == $i ? "active":"" ?>"><a class="page-link" href="?page=gallery&p=<?= $i ?>"><?= $i ?></a></li>
     <?php endfor; ?>
 
     <li class="page-item">
-      <a class="page-link" href="?page=gallery&p=<?= $curPage < ceil($count['count']/6) ? $curPage+1:$curPage ?>" aria-label="Next">
+      <a class="page-link" href="?page=gallery&p=<?= $curPage < ceil($count/6) ? $curPage+1:$curPage ?>" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>

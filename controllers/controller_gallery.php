@@ -11,7 +11,9 @@ if(!isset($_GET['p'])) {
 } else {
     $curPage = intval($_GET['p']);
 }
-$images = Image::getOnePage($curPage);
+
+
+$images = Image::getOnePage(($curPage-1)*6,6);
 
 // --- view
 include "./views/layout.phtml";

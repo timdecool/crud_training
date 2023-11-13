@@ -21,7 +21,7 @@
                 <li><strong>Mentions j'aime :</strong> <?= $likes ?></li>
                 <li>
                     <form method="post">
-                        <input type="submit" name="like" class="btn btn-<?= $hasLiked['hasLiked'] == 0 ? "info":"secondary" ?> mt-2" value="<?= $hasLiked['hasLiked'] == 0 ? "J'aime":"Je n'aime plus" ?>">
+                        <input type="submit" name="like" class="btn btn-<?= $hasLiked == 0 ? "info":"secondary" ?> mt-2" value="<?= $hasLiked == 0 ? "J'aime":"Je n'aime plus" ?>">
                     </form>
                 </li>
             </ul>
